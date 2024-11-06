@@ -128,9 +128,11 @@ export class UserController {
       Reflect.set(data, 'access_token', token);
       return { access_token: token, email: user.email, id: user.id, username: user.username };
     } catch (error) {
+      
       if (error instanceof ForbiddenException) {
         throw error;
       }
+      console.log('error: ', error);
       throw new InternalServerErrorException('Server error! Please try again later...');
     }
   }
